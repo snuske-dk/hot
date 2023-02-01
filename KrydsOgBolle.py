@@ -7,9 +7,9 @@ WIDTH, HEIGHT = 900, 900
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Tic Tac Toe!")
 
-BOARD = pygame.image.load("Board.png")
-X_IMG = pygame.image.load("X.png")
-O_IMG = pygame.image.load("O.png")
+BOARD = pygame.image.load("billeder/Board.png")
+X_IMG = pygame.image.load("billeder/X.png")
+O_IMG = pygame.image.load("billeder/O.png")
 
 BG_COLOR = (214, 201, 227)
 
