@@ -11,7 +11,7 @@ BOARD = pygame.image.load("billeder/Board.png")
 X_IMG = pygame.image.load("billeder/X.png")
 O_IMG = pygame.image.load("billeder/O.png")
 
-BG_COLOR = (214, 201, 227)
+BG_COLOR = (255, 255, 255)
 
 board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 graphical_board = [[[None, None], [None, None], [None, None]], 
