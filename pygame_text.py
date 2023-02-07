@@ -82,6 +82,6 @@ while True:
     # screen to updated, not full area
     pygame.display.flip()
       
-    # clock.tick(60) means that for every second at most
+    
     # 60 frames should be passed.
     clock.tick(60)
