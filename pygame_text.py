@@ -1,8 +1,10 @@
 # import sys module
 import pygame
 import sys
-  
-  
+import sqlite3
+
+
+
 # pygame.init() will initialize all
 # imported module
 pygame.init()
@@ -29,6 +31,18 @@ color_passive = pygame.Color('chartreuse4')
 color = color_passive
   
 active = False
+
+
+# sqlite
+# open connection
+connection = sqlite3.connect("db.db")
+cursor = connection.cursor()
+
+# create table
+cursor.execute("CREATE TABLE if not exists scores (player text, score int)")
+connection.commit()
+
+
   
 while True:
     for event in pygame.event.get():
@@ -51,12 +65,17 @@ while True:
   
                 # get text input from 0 to -1 i.e. end.
                 user_text = user_text[:-1]
-  
+            if event.key == pygame.K_RETURN:
+
+                cursor.execute("INSERT INTO scores VALUES (?,?)", (user_text, 1))
+                connection.commit()
+                
+
             # Unicode standard is used for string
             # formation
             else:
                 user_text += event.unicode
-      
+    
     # it will set background color of screen
     screen.fill((255, 255, 255))
   
@@ -82,6 +101,9 @@ while True:
     # screen to updated, not full area
     pygame.display.flip()
       
+      
+        
     
     # 60 frames should be passed.
     clock.tick(60)
+

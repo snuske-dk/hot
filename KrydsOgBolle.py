@@ -1,8 +1,9 @@
 import pygame, sys
+import sqlite3
  
 pygame.init()
  
-WIDTH, HEIGHT = 900, 900
+WIDTH, HEIGHT = 1100, 900
  
 SCREEN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Tic Tac Toe!")
@@ -107,6 +108,11 @@ def check_win(board):
                 if board[i][j] != 'X' and board[i][j] != 'O':
                     return None
         return "DRAW"
+
+def Scoreboard(bord):
+    # Draw the score to the screen
+    score_text = font.render(f'Scoreboard: {score}', True, (255, 255, 255))
+    screen.blit(score_text, (1000, 800))
 
 while True:
     for event in pygame.event.get():

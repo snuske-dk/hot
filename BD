@@ -1,0 +1,59 @@
+import pygame
+import sqlite3
+
+# sqlite
+# open connection
+connection = sqlite3.connect("db.db")
+cursor = connection.cursor()
+
+# create table
+cursor.execute("CREATE TABLE if not exists scores (player text, score int)")
+connection.commit()
+
+# insert value
+cursor.execute("INSERT INTO scores VALUES (?,?)", ("player1", 180))
+cursor.execute("INSERT INTO scores VALUES (?,?)", ("player2", 50))
+cursor.execute("INSERT INTO scores VALUES (?,?)", ("player3", 300))
+connection.commit()
+
+# get value
+cursor.execute("SELECT score FROM scores WHERE player = 'player2'")
+output = str(cursor.fetchall()[0][0])
+
+
+# pygame
+# set window size
+X = 400
+Y = 400
+
+# init pygame window
+pygame.init()
+display_surface = pygame.display.set_mode((X, Y))
+pygame.display.set_caption('Window title')
+
+# set pygame colors
+white = (255, 255, 255)
+black = (0, 0, 0)
+
+# init text 
+font = pygame.font.Font('freesansbold.ttf', 32)
+text = font.render(output, True, black, white)
+
+# center text
+textRect = text.get_rect()
+textRect.center = (X // 2, Y // 2)
+
+# loop
+while True:
+    display_surface.fill(white)
+    display_surface.blit(text, textRect)
+ 
+    # if close button quit
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            connection.close()
+            pygame.quit()
+            quit()
+
+        # update window
+        pygame.display.update()
